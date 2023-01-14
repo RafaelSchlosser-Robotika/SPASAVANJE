@@ -1,0 +1,70 @@
+#pragma once
+#include "helper.h"
+void RobotLine::radionica() {
+  static uint32_t lastLineMs = 0;
+  static uint32_t vrijeme = 0;
+  static int broj=0;
+  armOpen();
+ /* if (rightFront()<150 and rightFront()>40) {
+    go(-90, 90), delayMs(450);
+    lastLineMs = millis();
+    armClose();
+    while (rightFront() > 100) {
+      go(20, 20);
+      noLoopWithoutThis();
+    }
+    vrijeme = millis() - lastLineMs;
+    go(-20, -20), delayMs(vrijeme);
+    stop();
+    end();
+
+  }
+  else
+    go(30, 30);
+}*/
+ if (front() < 120) {
+    go(-90, 90);
+    delayMs(500);
+  }
+
+  if (leftFront() > 150)
+    go(80, 20);
+  else
+    go(20, 80);
+  if (broj==1){
+    armClose();
+    while(not lineAny()){
+      go(30,30);
+    }
+    if (lineAny()){
+      stop();
+      end();
+    }
+  }
+
+
+
+  if (rightFront()<150 and rightFront()>40) {
+    stop(), delayMs(500);
+    go(50, 50), delayMs(500);
+    go(-90, 90), delayMs(450);
+    lastLineMs = millis();
+    armClose();
+    while (leftFront() > 100) {
+      go(20, 20);
+      noLoopWithoutThis();
+    }
+    stop(), delayMs(2000);
+    armOpen();
+    go(20, 20), delayMs(2000);
+    armClose(),delayMs(1000);
+    vrijeme = millis() - lastLineMs;
+    go(-20, -20), delayMs(vrijeme);
+    go(90,-90),delayMs(450);
+    broj++;
+  }
+
+
+
+}
+
